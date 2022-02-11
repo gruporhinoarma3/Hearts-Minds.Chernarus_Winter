@@ -8,7 +8,10 @@
 
 params[ "_asset_index_1", "_asset_index_2", "_value" ];
 
-_asset = rhino_radio_assets#_asset_index_1;						// get asset array from asset list
-_asset set[ _asset_index_2, _value ];									// update asset array with new value for one asset variable
-rhino_radio_assets set[ _asset_index_1, _asset ];				// update asset list with modified asset array
-publicVariable "rhino_radio_assets";										// share across server and clients
+_asset = rhino_radio_assets#_asset_index_1;       // get asset array from asset list
+
+_asset set[ _asset_index_2, _value ];             // update asset array with new value for one asset variable
+
+rhino_radio_assets set[ _asset_index_1, _asset ]; // update asset list with modified asset array
+
+publicVariable "rhino_radio_assets";              // share across server and clients

@@ -41,7 +41,7 @@ _this addItemCargoGlobal ["ACE_bodyBag",5];
 _this addItemCargoGlobal ["ACE_EarPlugs",5];
 
 // rhino standard ammo for 5 members
-_this addMagazineCargoGlobal ["Laserbatteries,1];
+_this addMagazineCargoGlobal ["Laserbatteries",1];
 _this addMagazineCargoGlobal ["rhs_mag_maaws_HEAT",2];
 _this addMagazineCargoGlobal ["rhs_mag_maaws_HE",4];
 _this addMagazineCargoGlobal ["rhs_mag_30Rnd_556x45_M855A1_PMAG_Tracer_Red",6];
