@@ -11,6 +11,6 @@ while { true } do {
 	
 	if (!dialog) exitWith {};
 
-	if ( ( _radioholder distance player ) > 3 ) exitWith { closeDialog 0; };
+	if ( ( _radioholder distance player ) > rhino_radio_use_external_radio_distance ) exitWith { closeDialog 0; };
 
 };

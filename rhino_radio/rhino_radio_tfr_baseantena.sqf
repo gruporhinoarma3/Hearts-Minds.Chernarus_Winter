@@ -23,7 +23,14 @@ _statement1 = {
                         _antennatrigger setTriggerArea [1, 1, getDir this, false, 1000];
                         _antennatrigger setTriggerType "NONE";
                         _antennatrigger setTriggerActivation ["ANYPLAYER", "NOT PRESENT", false];
-                        _antennatrigger setTriggerStatements ["!(player in thisList)", "hint 'Conexión radio-antena perdida'; player setVariable [""tf_receivingDistanceMultiplicator"", 1]; player setVariable [""tf_sendingDistanceMultiplicator"", 1]; deleteVehicle thisTrigger;", ""];
+                        _antennatrigger setTriggerStatements [  "!(player in thisList)",
+                                                                "
+                                                                hint 'Conexión radio-antena perdida';
+                                                                player setVariable [""tf_receivingDistanceMultiplicator"", 1];
+                                                                player setVariable [""tf_sendingDistanceMultiplicator"", 1];
+                                                                deleteVehicle thisTrigger;
+                                                                ",
+                                                                ""];
                        };
 
 _condition1 = { true };
@@ -35,3 +42,4 @@ _action = [ _name, _text, _icon1, _statement1, _condition1] call ace_interact_me
 
 if (not(isNil "rhino_radio_base_antena")) then {
 	[ rhino_radio_base_antena, 0, _actionpath, _action] call ace_interact_menu_fnc_addActionToObject; };
+

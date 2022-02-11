@@ -1,43 +1,54 @@
 //script: rhino_radio_supplies_heli
 //author: |R|kiron
-//date: 2020-12-24
+//date: 2020-12-24, 2021-09-15
 
-params[ "_aircraft_class", ["_asset_index",-1], ["_requested_pos",false], "_supplybox", ["_unloadpos","rear"] ];	// parameters
+params[ "_aircraft_classname", "_asset_index", ["_requested_pos",false], ["_type",0], ["_amount",1] ];
 
-if (typeName _requested_pos == "BOOL") then {																// if no _requested_pos given
-    _return = [] call rhino_radio_fn_supportpos;																	// select coords
-    _requested_pos = _return select 0;
-    _ok = _return select 1;
-    if ( !_ok ) exitWith { hint "Petición cancelada" };
+_ok = true;
+if (typeName _requested_pos == "BOOL") then             // if no _requested_pos given ask the user to click one map pos
+{
+    _return = [] call rhino_radio_fn_supportpos;        // select coords with map click
+    _requested_pos = _return #0;
+    _ok = _return #1;
+};
+if ( !_ok ) exitWith { hint "Petición cancelada" };
+
+// rhino_radio_actions_heli_supplies params
+_unloadpos = "rear";                                                // If big   load, big   heli, rear ramp.
+if (( rhino_radio_assets#_asset_index )#rrg_index_load <5) then     // If small load, small heli, lateral door.
+{
+    _unloadpos = "side";
 };
 
-player sideRadio rhino_radio_sound_supply_confirm;															// confirmation sound
+_type = (rhino_radio_gui_supply_heli#0) find ( lbText[ 1502, _type ] );
+_supplybox = ( rhino_radio_gui_supply_heli#1 )#_type;
+if (_amount > 1) then
+{
+    for "_i" from 2 to _amount do
+    {
+        _supplybox = _supplybox+(( rhino_radio_gui_supply_heli#1 )#_type);
+    };
+};
 
-																																		// create aircraft
-_requested_pos = [ _requested_pos ];
-_waypoint_statement = [ "vehicle this land 'LAND';" ];
-_player_actions = [ "rhino_radio\rhino_radio_actions_heli_BIS.sqf", "rhino_radio\rhino_radio_actions_heli_transport.sqf", "rhino_radio\rhino_radio_actions_heli_supplies.sqf" ];
-_action_params = [ [rhino_radio_assets#_asset_index], [], [_supplybox,_unloadpos] ];
-_check_deserted = true;
-_flightaltitude = "100";
-_server_params = [ _aircraft_class, _requested_pos, _waypoint_statement, _player_actions, _action_params, _flightaltitude, _check_deserted, _asset_index ];
-_server_code = {
-	params[ "_aircraft_class", "_requested_pos", "_waypoint_statement", "_player_actions", "_action_params", "_flightaltitude", "_check_deserted", "_asset_index" ]; 
+// request aircraft params
+_spawn_pos = rr_coord_ATL_base vectorAdd [0,0,0];
+_spawn_dir = getDir rhino_radio_base;
+_waypoint_data = [ [_requested_pos,50,"MOVE","vehicle this land 'LAND';"] ];
+_flightaltitude = 100;
+_behaviour = "AWARE";
+_player_actions = [ "rhino_radio\rhino_radio_actions_heli_BIS.sqf",
+                    "rhino_radio\rhino_radio_actions_heli_transport.sqf",
+                    "rhino_radio\rhino_radio_actions_heli_supplies.sqf" ];
+_action_params = [ [rhino_radio_assets#_asset_index],
+                   [],
+                   [_supplybox,_unloadpos] ];
+_wait_players = true;
 
-	_aircraft = [ _aircraft_class, _requested_pos, _waypoint_statement, _player_actions, _action_params, _flightaltitude ]
-					 call rhino_radio_fn_create_aircraft;																								// create vehicle with crew
-	_crew = crew _aircraft;
-	_unit = group (_crew select 0);
+_aircraft_request_params = [ _aircraft_classname, _spawn_pos, _spawn_dir, _waypoint_data, _flightaltitude, _behaviour,
+                             _player_actions, _action_params, _asset_index, _wait_players ];
 
-	if ( _asset_index < 0 ) exitWith {};
-	[ _asset_index, rrg_index_handle, _aircraft ] call rhino_radio_fn_asset_list_update;										// add aircraft handle to list of assets
+// request aircraft, server execution, in case the player disconects
+_aircraft_request_params remoteExec [ "rhino_radio_fn_aircraft_request", 2 ];
 
-    if ( _check_deserted ) then { _handle_check_deserted = [_aircraft] spawn rhino_radio_fn_check_deserted;	// wait until aircraft is deserted or crew dead
-												waitUntil { scriptDone _handle_check_deserted }; };
-	
-	_asset_state = ( rhino_radio_assets # _asset_index )#rrg_index_state;
-	if ( _asset_state == rrg_state_busy ) then {																									// cancel request if has not been previously cancel
-		[ [ _asset ], "rhino_radio\rhino_radio_gui_cancel_request.sqf" ] remoteExec ["execVM", 2]; };
-	};
-_server_func = "bis_fnc_spawn";// bis_fnc_call bis_fnc_spawn
-[ _server_params, _server_code ] remoteExec [ _server_func, 2 ];																	// server only, in case the player disconects
+// confirmation sound
+player sideRadio rhino_radio_sound_supply_confirm;

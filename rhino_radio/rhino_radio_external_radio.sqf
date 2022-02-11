@@ -15,9 +15,9 @@
 //  * 9: Other parameters [showDisabled,enableInside,canCollapse,runOnHover,doNotCheckLOS] <ARRAY> (Optional)
 // * 10: Modifier function <CODE> (Optional)
 
-_action = [	_action_name,_action_string,_action_icon, _action_statement,_action_condition,
-					_action_children_code,_action_parameters, _action_position, _action_distance ] call ace_interact_menu_fnc_createAction;
+_action = [ _action_name,_action_string,_action_icon, _action_statement,_action_condition,
+            _action_children_code,_action_parameters, _action_position, _action_distance ] call ace_interact_menu_fnc_createAction;
 
-["Man", 0, ["ACE_TapShoulderRight"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-["Man", 0, ["ACE_TapShoulderLeft"]	, _action, true] call ace_interact_menu_fnc_addActionToClass;
-["Man", 0, ["ACE_MainActions"]		, _action, true] call ace_interact_menu_fnc_addActionToClass;
+["Man", 0, ["ACE_TapShoulderRight"] , _action, true] call ace_interact_menu_fnc_addActionToClass;
+["Man", 0, ["ACE_TapShoulderLeft"]  , _action, true] call ace_interact_menu_fnc_addActionToClass;
+["Man", 0, ["ACE_MainActions"]      , _action, true] call ace_interact_menu_fnc_addActionToClass;

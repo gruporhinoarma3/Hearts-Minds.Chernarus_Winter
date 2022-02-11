@@ -6,7 +6,7 @@ class rhino_radio_gui
         class controls
         {
 
-/* #Jesahu
+/* #Pexela
 $[
 	1.063,
 	["rhino_radio_gui",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
@@ -64,13 +64,13 @@ $[
 	[1620,"rhino_radio_gui_coordYtext",[1,"Coord Y",["0.520625 * safezoneW + safezoneX","0.291 * safezoneH + safezoneY","0.04125 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1400,"rhino_radio_gui_coordX",[1,"",["0.479375 * safezoneW + safezoneX","0.291 * safezoneH + safezoneY","0.04125 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1401,"rhino_radio_gui_coordY",[1,"",["0.561875 * safezoneW + safezoneX","0.291 * safezoneH + safezoneY","0.04125 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1206,"rhino_radio_gui_indicator",[1,"#(argb,8,8,3)color(1,1,0,1)",["0.618594 * safezoneW + safezoneX","0.302 * safezoneH + safezoneY","0.0515625 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1206,"rhino_radio_gui_indicator",[1,"#(argb,8,8,3)color(1,1,0,1)",["0.649532 * safezoneW + safezoneX","0.302 * safezoneH + safezoneY","0.0257812 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1621,"rhino_radio_gui_map",[1,"MAP",["0.603125 * safezoneW + safezoneX","0.291 * safezoneH + safezoneY","0.0360937 * safezoneW","0.044 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
-
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by |R| kiron, v1.063, #Jesahu)
+// GUI EDITOR OUTPUT START (by |R| kiron, v1.063, #Pexela)
 ////////////////////////////////////////////////////////
 
 class rhino_radio_gui_backgroundborder: RscPicture
@@ -520,15 +520,23 @@ class rhino_radio_gui_indicator: RscPicture
 {
 	idc = 1206;
 	text = "#(argb,8,8,3)color(1,1,0,1)";
-	x = 0.618594 * safezoneW + safezoneX;
+	x = 0.649532 * safezoneW + safezoneX;
 	y = 0.302 * safezoneH + safezoneY;
-	w = 0.0515625 * safezoneW;
+	w = 0.0257812 * safezoneW;
 	h = 0.022 * safezoneH;
+};
+class rhino_radio_gui_map: RscButton
+{
+	idc = 1621;
+	text = "MAP"; //--- ToDo: Localize;
+	x = 0.603125 * safezoneW + safezoneX;
+	y = 0.291 * safezoneH + safezoneY;
+	w = 0.0360937 * safezoneW;
+	h = 0.044 * safezoneH;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
-
 
 //class rhino_radio_gui_map: RscMapControl
 //{

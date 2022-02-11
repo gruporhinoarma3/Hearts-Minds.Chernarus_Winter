@@ -12,8 +12,8 @@
 // execVM "rhino_radio\rhino_radio_fn_getposmap.sqf";
 
 
-onMapSingleClick "";																			// cancel mapclic actions
-rhino_radio_selecting_map_pos = false;											// cancel request
-_marker = createMarker ["rhino_radio_user_map_click", [0,0,0] ];	// exit the loop in getposmap
+onMapSingleClick "";                                                // cancel mapclic actions
+rhino_radio_selecting_map_pos = false;                              // cancel request
+_marker = createMarker ["rhino_radio_user_map_click", [0,0,0] ];    // exit the loop in getposmap
 sleep 2;
-deleteMarker  "rhino_radio_user_map_click";									//clean
+deleteMarker  "rhino_radio_user_map_click";                         //clean
