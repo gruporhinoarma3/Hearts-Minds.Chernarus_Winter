@@ -29,7 +29,7 @@ btc_custom_loc = [
         ];
 */
 private _weapons = ["rhs_weap_hk416d10"];
-private _magazines = ["rhs_mag_30Rnd_556x45_Mk318_PMAG"];
+private _magazines = ["rhs_mag_30Rnd_556x45_M855A1_PMAG"];
 private _items = ["rhsusf_ANPVS_15","ItemMap","ItemCompass"];
 private _backpacks = ["tf_rt1523g"];
 
