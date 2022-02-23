@@ -34,7 +34,6 @@ removeAllWeapons player;        // remove player weapons
 while { true } do
 {
     if ( !('|R|' in name player) ) exitWith {};
-    rhino_member_list = profileNamespace getVariable ["rhino_member_list", [] ];
     if ( (getPlayerUID player) in rhino_member_list ) exitWith {};
     sleep 1;
 };                              // recheck if valid name

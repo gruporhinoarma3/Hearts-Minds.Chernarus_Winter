@@ -10,7 +10,6 @@ publicVariable "tf_same_lr_frequencies_for_side";
 _null = execVM "rhino\rhino_teamspeak.sqf";
 _null = execVM "rhino\rhino_slot.sqf";
 _null = execVM "rhino\rhino_member_whitelist.sqf";
-//_null = execVM "rhino\rhino_veh_acceso.sqf";
 //_null = execVM "rhino\rhino_veh_despliegue.sqf";
 /*
 if (isServer) then {
@@ -27,6 +26,7 @@ if (hasInterface) then
     _null = execVM "rhino\rhino_hospital_3.sqf";
     _null = execVM "rhino\rhino_skiptime.sqf";
     _null = execVM "rhino\rhino_lanzar_mochilas.sqf";
+    _null = execVM "rhino\rhino_veh_acceso.sqf";
     
     // RHINO ACE arsenal forced equipation
     ["ItemMap"    , "equipado"] execVM "rhino\rhino_arsenal_ACE_assign_item.sqf";
